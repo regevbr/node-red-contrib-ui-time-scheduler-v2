@@ -366,7 +366,8 @@ module.exports = function(RED) {
 								node.send(msg);
 							}
 						} else if (msg.hasOwnProperty("getStatus")) {
-							msg.payload = serializeData();
+							msg.data = getNodeData();
+							msg.payload = JSON.stringify(msg.data);
 							node.send(msg);
 							return msg;
 						} else {
@@ -922,8 +923,20 @@ module.exports = function(RED) {
 					}
 				}
 
+
+				function getDevicesValues() {
+					const devices = {};
+					for (let device = 0; device < config.devices.length; device++) {
+						devices[device] = {
+							isInTime: isInTime(device),
+							name: config.devices[device]
+						}
+					}
+					return devices;
+				}
+
 				function getNodeData() {
-					return { timers: getTimers(), settings: getSettings() };
+					return { timers: getTimers(), settings: getSettings(), devices: getDevicesValues() };
 				}
 
 				function serializeData() {

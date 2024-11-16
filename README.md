@@ -5,12 +5,14 @@ A node-red-ui time scheduler for the Node-RED Dashboard.
 | :----------------------------: | :-------------------------------: |
 |         *Default Mode*         |           *Event Mode*            |
 
+Forked from https://github.com/fellinga/node-red-contrib-ui-time-scheduler
+
 ## Install
   
 You can install this node directly from the "Manage Palette" menu in the Node-RED interface.  
 Alternatively, run the following command in your Node-RED user directory - typically `~/.node-red` on Linux or `%HOMEPATH%\.nodered` on Windows
 
-        npm install node-red-contrib-ui-time-scheduler
+        npm install node-red-contrib-ui-time-scheduler-v2
 
 ### Requirements ###
 node-red v0.19 or above  
@@ -50,7 +52,7 @@ If you changed the node-red <a target="blank" href="https://nodered.org/docs/use
 You can find example flows and schedules within the examples folder.
 Easily import flows via the Node-RED flow editor:
   
-☰ -> Import -> Examples -> node-red-contrib-ui-time-scheduler
+☰ -> Import -> Examples -> node-red-contrib-ui-time-scheduler-v2
   
 ## History
   
