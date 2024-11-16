@@ -807,7 +807,7 @@ module.exports = function(RED) {
 
 				function addOutputValues(outputValues) {
 					for (let device = 0; device < config.devices.length; device++) {
-						const msg = { payload: isInTime(device) };
+						const msg = { payload: isInTime(device).status };
 						if (config.sendTopic) msg.topic = config.devices[device];
 						msg.payload != null ? outputValues.push(msg) : outputValues.push(null);
 					}
@@ -827,6 +827,7 @@ module.exports = function(RED) {
 				function isInTime(deviceIndex) {
 					const nodeTimers = getTimers();
 					let status = null;
+					let remainingMs;
 
 					if (nodeTimers.length > 0 && !getDisabledDevices().includes(deviceIndex.toString())) {
 						const date = new Date();
@@ -868,6 +869,7 @@ module.exports = function(RED) {
 							} else {
 								if (compareDate.getTime() >= localStarttime.getTime() && compareDate.getTime() < localEndtime.getTime()) {
 									status = true;
+									remainingMs = localEndtime.getTime() - compareDate.getTime();
 								} else if (compareDate.getTime() == localEndtime.getTime()) {
 									status = false;
 								}
@@ -876,7 +878,7 @@ module.exports = function(RED) {
 					}
 
 					if (!config.eventMode && !config.singleOff && status == null) status = false;
-					return status;
+					return {status, remainingMs};
 				}
 
 				function localDayToUtc(timer, localDay) {
@@ -927,8 +929,10 @@ module.exports = function(RED) {
 				function getDevicesValues() {
 					const devices = {};
 					for (let device = 0; device < config.devices.length; device++) {
+						const isInTimeResult = isInTime(device);
 						devices[device] = {
-							isInTime: isInTime(device),
+							isInTime: isInTimeResult.status,
+							remainingMs: isInTimeResult.remainingMs,
 							name: config.devices[device]
 						}
 					}
