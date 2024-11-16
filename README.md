@@ -1,4 +1,4 @@
-# node-red-contrib-ui-time-scheduler
+# node-red-contrib-ui-time-scheduler-v2
 A node-red-ui time scheduler for the Node-RED Dashboard.  
 
 | ![](images/time-scheduler.jpg) | ![](images/time-scheduler-em.jpg) |
@@ -55,9 +55,3 @@ Easily import flows via the Node-RED flow editor:
 ## History
   
 Find the changelog [here](CHANGELOG.md).
-  
-# Donate
-  
-You can donate by clicking the following link if you want to support this free project:
-  
-<a target="blank" href="https://www.paypal.me/fellinga"><img src="https://img.shields.io/badge/Donate-PayPal-blue.svg"/></a>
