@@ -308,11 +308,11 @@ module.exports = function(RED) {
 
 	function checkConfig(config, node) {
 		if (!config) {
-			node.error(RED._("ui_time_scheduler.error.no-config"));
+			node.error(RED._("ui_time_scheduler_v2.error.no-config"));
 			return false;
 		}
 		if (!config.hasOwnProperty("group")) {
-			node.error(RED._("ui_time_scheduler.error.no-group"));
+			node.error(RED._("ui_time_scheduler_v2.error.no-group"));
 			return false;
 		}
 		return true;
@@ -960,7 +960,7 @@ module.exports = function(RED) {
 			console.log("TimeSchedulerNode:", error);
 		}
 	}
-	RED.nodes.registerType("ui_time_scheduler", TimeSchedulerNode);
+	RED.nodes.registerType("ui_time_scheduler_v2", TimeSchedulerNode);
 
 	let uiPath = ((RED.settings.ui || {}).path);
 	if (uiPath == undefined) uiPath = 'ui';
